@@ -75,16 +75,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Deployments
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                @if (Auth::check())
+                    <img src="{{ Auth::user()->avatar }}" width="50"/>
+                    <p>Your are logged in. Welcome {{ Auth::user()->name}}!</p>
+                @else
+                    Unauthorized
+                @endif
             </div>
         </div>
     </body>
