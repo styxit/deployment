@@ -16,7 +16,7 @@ class AuthController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('github')->scopes(['repo_deployment'])->redirect();
+        return Socialite::driver('github')->scopes(['repo_deployment', 'read:org', 'repo'])->redirect();
     }
 
     /**
@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $user = Socialite::driver('github')->scopes(['repo_deployment'])->user();
+            $user = Socialite::driver('github')->scopes(['repo_deployment', 'read:org', 'repo'])->user();
         } catch (Exception $e) {
             return Redirect::to('auth/github');
         }
