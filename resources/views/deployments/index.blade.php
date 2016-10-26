@@ -1,15 +1,47 @@
-<h1>Deployments for my repositories</h1>
+@extends('layouts.app')
 
-<table>
-@foreach ($deployments as $deployment)
-    <tr>
-        <td>{{ $deployment['id'] }}</td>
-        <td>{{ $deployment['created_at'] }}</td>
-        <td>{{ $deployment['ref'] }}</td>
-        <td>{{ $deployment['task'] }}</td>
-        <td>{{ $deployment['environment'] }}</td>
-        <td>{{ $deployment['description'] }}</td>
-        <td><img src="{{ $deployment['creator']['avatar_url'] }}" width="20" /></td>
-    </tr>
-@endforeach
-</table>
+
+@section('title', 'Deployments')
+
+@section('content')
+<!-- page start-->
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Deployments for my repositories
+            </header>
+            <div class="panel-body">
+                <section id="unseen">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Creation date</th>
+                            <th>Task</th>
+                            <th>Status</th>
+                            <th>Environment</th>
+                            <th>reference</th>
+                            <th>Description</th>
+                            <th>Creator</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($deployments as $deployment)
+                            <tr>
+                                <td>{{ date('H:i d-m-Y', strtotime($deployment['created_at'])) }}</td>
+                                <td>{{ $deployment['task'] }}</td>
+                                <td>Status</td>
+                                <td>{{ $deployment['environment'] }}</td>
+                                <td>{{ $deployment['ref'] }}</td>
+                                <td>{{ $deployment['description'] }}</td>
+                                <td><img src="{{ $deployment['creator']['avatar_url'] }}" width="20" /></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>
+@endsection
