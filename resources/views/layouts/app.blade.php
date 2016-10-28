@@ -92,7 +92,7 @@
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper site-min-height">
+        <section class="wrapper">
             <!-- page start-->
             @yield('content')
             <!-- page end-->
@@ -100,14 +100,6 @@
     </section>
     <!--main content end-->
     <!--footer start-->
-    <footer class="site-footer">
-        <div class="text-center">
-            {{ date('Y') }} &copy; Deployment statuses.
-            <a href="#" class="go-top">
-                <i class="fa fa-angle-up" aria-hidden="true"></i>
-            </a>
-        </div>
-    </footer>
     <!--footer end-->
 </section>
 
