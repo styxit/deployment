@@ -15,8 +15,10 @@ Route::get('auth/github', 'AuthController@redirectToProvider');
 Route::get('auth/github/callback', 'AuthController@handleProviderCallback');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index');
+
     Route::get('deployments', 'DeploymentController@index');
-    
+
     Route::get('repositories', 'RepositoryController@index');
     Route::get('repositories/organization/{id}', 'RepositoryController@organization');
 });
