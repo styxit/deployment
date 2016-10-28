@@ -31,7 +31,9 @@
             <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
         </div>
         <!--logo start-->
-        <a href="/home" class="logo" >Deployment <span>statuses</span></a>
+        <a href="/home" class="logo" >
+            <span><i class="fa fa-send-o" aria-hidden="true"></i></span> Deployment <span>statuses</span>
+        </a>
         <!--logo end-->
         <div class="top-nav ">
             <ul class="nav pull-right top-menu">
