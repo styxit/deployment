@@ -11,7 +11,7 @@
     <title>Deployments - @yield('title')</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-reset.css') }}" rel="stylesheet">
 
     <!--external css-->
@@ -105,7 +105,7 @@
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="{{ asset('js/respond.min.js') }}" ></script>
 
 <!--common script for all pages-->
