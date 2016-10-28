@@ -13,8 +13,10 @@ class RepositoryController extends Controller
     {
         $repositories = collect($this->github->me()->repositories());
 
-        // Sort repositories
-        $repositories = $repositories->sortBy('full_name');
+        // Sort repositories case insensitive.
+        $repositories = $repositories->sortBy(function ($repository, $key) {
+            return strtolower($repository['name']);
+        });
 
         return view(
             'repositories.index',
@@ -37,8 +39,10 @@ class RepositoryController extends Controller
         // Get all repositories for organization.
         $repositories = collect($this->github->organization($organizationId)->repositories($organizationId));
 
-        // Sort repositories.
-        $repositories = $repositories->sortBy('full_name');
+        // Sort repositories case insensitive.
+        $repositories = $repositories->sortBy(function ($repository, $key) {
+            return strtolower($repository['name']);
+        });
 
         return view(
             'repositories.organization',
