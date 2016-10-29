@@ -4383,9 +4383,18 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 /*lock screen*/
 
 .lock-screen {
-    background:#02bac6 url("../img/lock-bg.jpg");
+    background: url(/img/splash.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: repeat;
+}
+
+.lock-screen ::selection {
+    background: Gray;
+}
+.lock-screen ::-moz-selection {
+    background: Gray;
 }
 
 .lock-wrapper {
@@ -4394,7 +4403,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 }
 
 .lock-box {
-    background: rgba(255,255,255,.3);
+    background: rgba(0,0,0,.20);
     padding: 20px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -4403,7 +4412,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 
 .lock-wrapper img {
     position: absolute;
-    left: 40%;
+    left: 38%;
     top: -40px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -4414,14 +4423,13 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     text-align: center;
     color: #fff;
     font-size: 18px;
-    text-transform: uppercase;
     padding: 20px 0 0 0;
 }
 
 .lock-wrapper .locked {
     margin-bottom: 20px;
     display: inline-block;
-    color: #026f7a;
+    color: #ffffff;
 }
 
 .btn-lock,.btn-lock:hover {

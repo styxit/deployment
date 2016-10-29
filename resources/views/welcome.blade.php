@@ -10,15 +10,30 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
                 color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
                 height: 100vh;
                 margin: 0;
+                font-size: 15px;
+            }
+
+            .btn{
+                color: #5c5c5e;
+                padding: 7px;
+                background-color: #ffffff;
+                border: rgba(92,92,94,0.8) 1px solid;
+                text-decoration: none;
+            }
+
+            .btn-github {
+                padding: 20px;
             }
 
             .full-height {
@@ -35,28 +50,19 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
             }
 
             .title {
-                font-size: 84px;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
+                font-size: 15vw;
             }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
+            @media (min-width: 480px) {
+                .title {
+                    font-size: 84px;
+                }
             }
 
             .m-b-md {
@@ -64,24 +70,31 @@
             }
         </style>
     </head>
-    <body>
+    <body class="lock-screen">
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     Deployments
                 </div>
                 @if (Auth::check())
-                    <img src="{{ Auth::user()->avatar }}" width="50"/>
-                    <p>Your are logged in. Welcome {{ Auth::user()->name}}!</p>
+                    <div class="lock-wrapper">
+                        <div class="lock-box text-center">
+                            <img src="{{ Auth::user()->avatar }}" alt="Avatar" width="75"/>
+                            <h1>Hi {{ Auth::user()->name}}</h1>
+                            <span class="locked">You are authenticated through GitHub</span>
+                            <div>
+                                <a class="btn btn-continue" href="/home">
+                                    Continue <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 @else
-                    Unauthorized
+                    <h2>
+                        <a href="/auth/github" class="btn btn-github">
+                            <span class="fa fa-github"></span> Sign in with GitHub
+                        </a>
+                    </h2>
                 @endif
             </div>
         </div>
