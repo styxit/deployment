@@ -13,6 +13,8 @@
 
 Route::get('auth/github', 'AuthController@redirectToProvider');
 Route::get('auth/github/callback', 'AuthController@handleProviderCallback');
+Route::get('logout', 'AuthController@logout');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');

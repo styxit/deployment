@@ -60,4 +60,16 @@ class AuthController extends Controller
             'token' => $githubUser->token
         ]);
     }
+
+    /**
+     * Destroy the user session and return to the homepage.
+     *
+     * @return Response
+     */
+    public function logout()
+    {
+        Auth::logout();
+
+        return Redirect::to('/');
+    }
 }
