@@ -49,9 +49,7 @@
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a href="#"><i class="fa fa-suitcase" aria-hidden="true"></i>Profile</a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></i> Settings</a></li>
-                        <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notification</a></li>
+                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></i> Settings (deactivated)</a></li>
                         <li><a href="/logout"><i class="fa fa-key" aria-hidden="true"></i> Log Out</a></li>
                     </ul>
                 </li>
