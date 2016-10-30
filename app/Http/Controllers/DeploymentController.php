@@ -34,4 +34,28 @@ class DeploymentController extends Controller
             ]
         );
     }
+
+    /**
+     * Show details of a deployment including the statuses.
+     *
+     * @return Response
+     */
+    public function show($repositoryLogin, $repositoryName, $deploymentId)
+    {
+        // Get repository details.
+        $repository = $this->github->repositories()->show($repositoryLogin, $repositoryName);
+        // Get a specific deployment.
+        $deployment = $this->github->deployments()->show($repositoryLogin, $repositoryName, $deploymentId);
+        // Get all statuses for the deployment.
+        $statuses = collect($this->github->deployments()->getStatuses($repositoryLogin, $repositoryName, $deploymentId));
+
+        return view(
+            'deployments.show',
+            [
+                'deployment' => $deployment,
+                'repository' => $repository,
+                'statuses' => $statuses->sortByDesc('created_at'),
+            ]
+        );
+    }
 }
