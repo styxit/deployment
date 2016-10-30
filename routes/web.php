@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('repositories', 'RepositoryController@index');
     Route::get('repositories/organization/{id}', 'RepositoryController@organization');
+    Route::get('repositories/{repositoryLogin}/{repositoryName}', 'RepositoryController@show');
 });
 
 Route::get('/', function () {
