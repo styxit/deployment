@@ -41,7 +41,11 @@
                         <tbody>
                         @foreach ($deployments as $deployment)
                             <tr>
-                                <td>{{ date('H:i d-m-Y', strtotime($deployment['created_at'])) }}</td>
+                                <td>
+                                    <a href="/deployments/{{ $repository['full_name'] }}/{{ $deployment['id'] }}">
+                                        <i class="fa fa-bookmark-o"></i> {{ date('H:i d-m-Y', strtotime($deployment['created_at'])) }}
+                                    </a>
+                                </td>
                                 <td>{{ $deployment['task'] }}</td>
                                 <td>Status</td>
                                 <td>{{ $deployment['environment'] }}</td>
