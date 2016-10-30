@@ -58,12 +58,12 @@ class RepositoryController extends Controller
      *
      * @return Response
      */
-    public function show($respoitoryLogin, $repositoryName)
+    public function show($repositoryLogin, $repositoryName)
     {
         // Get repository details.
-        $repository = $this->github->repositories()->show($respoitoryLogin, $repositoryName);
+        $repository = $this->github->repositories()->show($repositoryLogin, $repositoryName);
         // Get deployments for repository.
-        $deployments = collect($this->github->deployment()->all($respoitoryLogin, $repositoryName));
+        $deployments = collect($this->github->deployment()->all($repositoryLogin, $repositoryName));
 
         return view(
             'repositories.show',
