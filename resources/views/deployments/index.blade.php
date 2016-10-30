@@ -18,7 +18,6 @@
                         <tr>
                             <th>Creation date</th>
                             <th>Task</th>
-                            <th>Status</th>
                             <th>Environment</th>
                             <th>reference</th>
                             <th>Description</th>
@@ -30,7 +29,6 @@
                             <tr>
                                 <td>{{ date('H:i d-m-Y', strtotime($deployment['created_at'])) }}</td>
                                 <td>{{ $deployment['task'] }}</td>
-                                <td>Status</td>
                                 <td>{{ $deployment['environment'] }}</td>
                                 <td>{{ $deployment['ref'] }}</td>
                                 <td>{{ $deployment['description'] }}</td>
