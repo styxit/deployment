@@ -63,6 +63,7 @@
                         <tr>
                             <th>Creation date</th>
                             <th>State</th>
+                            <th>Description</th>
                             <th>Creator</th>
                         </tr>
                         </thead>
@@ -73,6 +74,7 @@
                                     {{ $status['created_at'] }}
                                 </td>
                                 <td>{{ $status['state'] }}</td>
+                                <td>{{ $status['description'] }}</td>
                                 <td><img src="{{ $status['creator']['avatar_url'] }}" width="20" class="img-rounded" /> {{ $status['creator']['login'] }}</td>
                             </tr>
                         @endforeach
