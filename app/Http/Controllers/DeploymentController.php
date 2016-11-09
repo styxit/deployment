@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Github\ResultPager;
+
 class DeploymentController extends Controller
 {
     /**
@@ -46,8 +48,12 @@ class DeploymentController extends Controller
         $repository = $this->github->repositories()->show($repositoryLogin, $repositoryName);
         // Get a specific deployment.
         $deployment = $this->github->deployments()->show($repositoryLogin, $repositoryName, $deploymentId);
-        // Get all statuses for the deployment.
-        $statuses = collect($this->github->deployments()->getStatuses($repositoryLogin, $repositoryName, $deploymentId));
+        // Get all statuses for the deployment, using the ResultPager.
+        $statuses  = collect(app(ResultPager::class, [$this->github])->fetchAll(
+            $this->github->deployments(),
+            'getStatuses',
+            [$repositoryLogin, $repositoryName, $deploymentId]
+        ));
 
         return view(
             'deployments.show',
