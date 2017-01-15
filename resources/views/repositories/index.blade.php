@@ -16,7 +16,6 @@
                         <table class="table table-bordered table-striped table-condensed">
                             <thead>
                             <tr>
-                                <th class="numeric">Id</th>
                                 <th>Name</th>
                                 <th>Owner</th>
                             </tr>
@@ -24,7 +23,6 @@
                             <tbody>
                             @foreach ($repositories as $repository)
                                 <tr>
-                                    <td>{{ $repository['id'] }}</td>
                                     <td>
                                         <a href="/repositories/{{ $repository['full_name'] }}">{{ $repository['full_name'] }}</a>
                                     </td>
