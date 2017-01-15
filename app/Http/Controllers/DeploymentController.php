@@ -19,10 +19,17 @@ class DeploymentController extends Controller
         $deployments = collect([]);
         $repositories->each(function(&$repo) use (&$deployments) {
             try {
-                // Collect all deployments for repository and merge with other deployments.
-                $deployments = $deployments->merge(
-                    collect($this->github->deployment()->all($repo['owner']['login'], $repo['name']))
-                );
+                // Collect all deployments for repository.
+                $repoDeployments = collect($this->github->deployment()->all($repo['owner']['login'], $repo['name']));
+
+                // Add repository details to the deployments.
+                $repoDeployments = $repoDeployments->map(function($item, $key) use ($repo){
+                    $item['repository'] = $repo;
+                    return $item;
+                });
+
+                // Merge deployments for this repo with the other deployments.
+                $deployments = $deployments->merge($repoDeployments);
             } catch (\Github\Exception\RuntimeException $e) {
                 // Continue on runtime exceptions.
                 return;
