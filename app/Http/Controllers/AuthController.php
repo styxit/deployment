@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use Laravel\Socialite\Two\User as SocialiteUser;
 use Socialite;
 
 class AuthController extends Controller
@@ -32,7 +33,7 @@ class AuthController extends Controller
             return Redirect::to('auth/github');
         }
 
-        // Store the user details received from GitHub.
+        // Store the user details from socialite.
         $authUser = $this->updateOrCreateUser($user);
 
         // Immediately log the user in.
@@ -44,22 +45,23 @@ class AuthController extends Controller
     /**
      * Update existing user or create a new user.
      *
-     * @param $githubUser
-     * @return User
+     * @param SocialiteUser $socialiteUser The user details to store.
+     *
+     * @return User The user model.
      */
-    private function updateOrCreateUser($githubUser)
+    private function updateOrCreateUser(SocialiteUser $socialiteUser)
     {
         // Update user details or create a new user.
         return User::updateOrCreate(
             [
-                'github_id' => $githubUser->id,
+                'github_id' => $socialiteUser->getId(),
             ],
             [
-                'name' => $githubUser->name,
-                'email' => $githubUser->email,
-                'login' => $githubUser->user['login'],
-                'avatar' => $githubUser->avatar,
-                'token' => $githubUser->token
+                'name' => $socialiteUser->getName(),
+                'email' => $socialiteUser->getEmail(),
+                'login' => $socialiteUser->getNickname(),
+                'avatar' => $socialiteUser->getAvatar(),
+                'token' => $socialiteUser->token
             ]
         );
     }
