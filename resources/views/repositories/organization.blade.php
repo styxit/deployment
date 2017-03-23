@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Repositories for '.$organization['name'] )
+@section('title', 'Repositories for '.( !empty($organization['name']) ? $organization['name']: $organization['login'] ) )
 
 @section('content')
 <!-- page start-->
@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <img src="{{ $organization['avatar_url'] }}" width="20" /> {{ $organization['name'] }} &raquo; Repositories
+                    <img src="{{ $organization['avatar_url'] }}" width="20" /> {{ !empty($organization['name']) ? $organization['name']: $organization['login'] }} &raquo; Repositories
                 </header>
                 <div class="panel-body">
                     <section id="unseen">

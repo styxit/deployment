@@ -16,8 +16,8 @@
                             <a href="/repositories/organization/{{ $organization['login'] }}">
                                 <img alt="Logo for organization {{ $organization['login'] }}" src="{{ $organization['avatar_url'] }}">
                             </a>
-                            <h1>{{ $organization['name'] }}</h1>
-                            {{ $organization['blog'] }}
+                            <h1>{{ !empty($organization['name']) ? $organization['name']: $organization['login'] }}</h1>
+                            {{ !empty($organization['blog']) ? $organization['blog']: '' }}
                         </div>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="javascript:;"> <i class="fa fa-clock-o"></i> Public repositories <span class="label label-primary pull-right r-activity">{{ $organization['public_repos'] }}</span></a></li>
