@@ -56,7 +56,7 @@ class DeploymentController extends Controller
         // Get a specific deployment.
         $deployment = $this->github->deployments()->show($repositoryLogin, $repositoryName, $deploymentId);
         // Get all statuses for the deployment, using the ResultPager.
-        $statuses  = collect(app(ResultPager::class, [$this->github])->fetchAll(
+        $statuses  = collect(app()->makeWith(ResultPager::class, ['client' => $this->github])->fetchAll(
             $this->github->deployments(),
             'getStatuses',
             [$repositoryLogin, $repositoryName, $deploymentId]
