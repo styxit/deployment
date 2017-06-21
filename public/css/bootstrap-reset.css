@@ -88,6 +88,10 @@ a:hover {
     color: #8175c7;
 }
 
+.form-control {
+    color: #777 !important;
+}
+
 /*modal*/
 
 .modal-content {
@@ -151,13 +155,25 @@ ul {
     color: #fff;
 }
 
-.btn-primary {
+.btn-default:disabled:hover, .btn-default:disabled:focus, .btn-default:disabled:active {
+    color: #333;
+}
+
+.btn-primary ,
+.btn-primary.disabled,
+.btn-primary[disabled],
+.btn-primary.disabled.active,
+.btn-primary.active[disabled]{
     background-color: #41cac0;
     border-color: #41cac0;
     color: #FFFFFF;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary,
+.btn-primary.disabled,
+.btn-primary[disabled],
+.btn-primary.disabled.active,
+.btn-primary.active[disabled]{
     background-color: #39b2a9;
     border-color: #39b2a9;
     color: #FFFFFF;
@@ -372,3 +388,8 @@ ul {
 }
 
 
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    margin-left: 0;
+    position: static;
+}
