@@ -17,7 +17,7 @@
                 <p>{{ $repository['description'] }}</p>
             </div>
         </div>
-        <p><button type="button" class="btn btn-primary btn-lg"><i class="fa fa-send"></i> New deployment</button></p>
+        <p><a href="/deployments/{{ $repository['full_name'] }}/create" class="btn btn-primary btn-lg"><i class="fa fa-send"></i> New deployment</a></p>
     </div>
     <div class="col-lg-9">
         <section class="panel">

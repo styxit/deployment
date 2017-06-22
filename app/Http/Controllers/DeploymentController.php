@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Github\Exception\RuntimeException;
 use Github\ResultPager;
+use Illuminate\Http\Request;
 
 class DeploymentController extends Controller
 {
@@ -71,5 +72,63 @@ class DeploymentController extends Controller
                 'statuses' => $statuses->sortByDesc('created_at'),
             ]
         );
+    }
+
+    /**
+     * Show form to create a new deployment.
+     *
+     * @return Response
+     */
+    public function create($repositoryLogin, $repositoryName)
+    {
+        // Get repository details.
+        $repository = $this->github->repositories()->show($repositoryLogin, $repositoryName);
+
+        // Get all branches for the repository, using the ResultPager.
+        $branches  = collect(app()->makeWith(ResultPager::class, ['client' => $this->github])->fetchAll(
+            $this->github->repositories(),
+            'branches',
+            [$repositoryLogin, $repositoryName]
+        ))->sortBy(function ($branch) {
+            // Order branches by branch name.
+            return strtolower($branch['name']);
+        });
+
+        return view(
+            'deployments.create',
+            [
+                'branches' => $branches,
+                'repository' => $repository,
+            ]
+        );
+    }
+
+    /**
+     * Create a new deployment at GitHub.
+     *
+     * @return Response
+     */
+    public function store($repositoryLogin, $repositoryName, Request $request)
+    {
+        try {
+            $deployment = $this->github->deployments()->create(
+                $repositoryLogin,
+                $repositoryName,
+                $request->except(['_token'])
+            );
+        } catch (RuntimeException $e) {
+            // Show error on runtime exceptions.
+            $request->session()->flash('status.error', $e->getMessage());
+            return redirect(request()->headers->get('referer'));
+        }
+
+        $request->session()->flash('status.success', 'Deployment created');
+
+        return redirect(sprintf(
+            '/deployments/%s/%s/%s',
+            $repositoryLogin,
+            $repositoryName,
+            $deployment['id']
+        ));
     }
 }

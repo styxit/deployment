@@ -20,7 +20,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('deployments', 'DeploymentController@index');
+    Route::get('deployments/{repositoryLogin}/{repositoryName}/create', 'DeploymentController@create');
     Route::get('deployments/{repositoryLogin}/{repositoryName}/{deploymentId}', 'DeploymentController@show');
+    Route::post('deployments/{repositoryLogin}/{repositoryName}', 'DeploymentController@store');
 
     Route::get('repositories', 'RepositoryController@index');
     Route::get('repositories/organization/{id}', 'RepositoryController@organization');
