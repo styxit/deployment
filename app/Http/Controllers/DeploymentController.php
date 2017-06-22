@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Github\Exception\RuntimeException;
 use Github\ResultPager;
 
 class DeploymentController extends Controller
@@ -30,7 +31,7 @@ class DeploymentController extends Controller
 
                 // Merge deployments for this repo with the other deployments.
                 $deployments = $deployments->merge($repoDeployments);
-            } catch (\Github\Exception\RuntimeException $e) {
+            } catch (RuntimeException $e) {
                 // Continue on runtime exceptions.
                 return;
             }
