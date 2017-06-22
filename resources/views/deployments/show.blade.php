@@ -13,7 +13,11 @@
                 </a>
             </div>
             <div class="media-body">
-                <h3 class="media-heading drg-event-title">{{ $repository['name'] }}</h3>
+                <h3 class="media-heading drg-event-title">
+                    <a href="/repositories/{{ $repository['full_name'] }}">
+                        {{ $repository['name'] }}
+                    </a>
+                </h3>
                 <p>{{ $repository['description'] }}</p>
             </div>
         </div>
