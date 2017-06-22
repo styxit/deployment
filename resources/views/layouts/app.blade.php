@@ -109,5 +109,28 @@
 <!--common script for all pages-->
 <script src="{{ asset('js/common-scripts.js') }}"></script>
 
+@if(session()->has('status'))
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet">
+    <script>
+        toastr.options = {
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "hideEasing": "linear",
+        }
+
+        @if(session()->has('status.info'))
+            toastr.info('{{session()->pull('status.info')}}', 'Info');
+        @endif
+        @if(session()->has('status.success'))
+            toastr.success('{{session()->pull('status.success')}}', 'Success');
+        @endif
+        @if(session()->has('status.error'))
+            toastr.error('{{session()->pull('status.error')}}', 'Error');
+        @endif
+    </script>
+@endif
 </body>
 </html>
